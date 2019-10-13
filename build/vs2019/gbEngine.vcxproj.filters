@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\extern\glew\src\glew.c">
+      <Filter>extern\glew</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\common\stdafx.cpp">
+      <Filter>source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\engine\core\Viewport.cpp">
+      <Filter>source\engine\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\engine\core\Surface.cpp">
+      <Filter>source\engine\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\window\windows\Context.cpp">
+      <Filter>source\window\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\window\windows\Event.cpp">
+      <Filter>source\window\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\window\windows\Window.cpp">
+      <Filter>source\window\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\engine\env\EnvBasic.cpp">
+      <Filter>source\engine\env</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\window\windows\dllmain.cpp">
+      <Filter>source\window\windows</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\extern\glew\include\GL\glew.h">
+      <Filter>extern\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\extern\glew\include\GL\wglew.h">
+      <Filter>extern\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\common\stdafx.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\engine\core\Viewport.h">
+      <Filter>source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\engine\core\Surface.h">
+      <Filter>source\engine\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\window\windows\Context.h">
+      <Filter>source\window\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\window\windows\Event.h">
+      <Filter>source\window\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\window\windows\Window.h">
+      <Filter>source\window\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\engine\env\EnvBasic.h">
+      <Filter>source\engine\env</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\gbEngine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\math\Vector2.h">
+      <Filter>source\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\math\math.h">
+      <Filter>source\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\window\defines.h">
+      <Filter>source\window</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="extern">
+      <UniqueIdentifier>{824bf0c3-72b5-4c58-ba98-6c8affea13c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extern\glew">
+      <UniqueIdentifier>{f5a26aa5-0f63-4283-95cb-4f86b2c67681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{e63f8362-de5c-42fa-8b16-8eb583a5963a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\engine">
+      <UniqueIdentifier>{833945d9-3956-49b6-be89-a2d5c3835da9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\engine\core">
+      <UniqueIdentifier>{4a8bebeb-d110-4513-866b-976043e41e71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\common">
+      <UniqueIdentifier>{bba256e1-9b0e-4ad5-b329-c84e32e718a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\window">
+      <UniqueIdentifier>{07e70245-acb5-40f7-b41e-1fc44115dbbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\engine\driver">
+      <UniqueIdentifier>{09a31dc6-029d-45fc-87de-dfa44710ed56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\engine\driver\direct3d">
+      <UniqueIdentifier>{39b8d732-4972-45ed-98f3-3d328a6a38a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\engine\driver\opengl">
+      <UniqueIdentifier>{f77c4b61-dadb-4d13-a6de-0e3fbbff6ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\window\windows">
+      <UniqueIdentifier>{cfff66e2-6265-4baf-a6dc-452d3ee00004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\engine\env">
+      <UniqueIdentifier>{58d2a97b-f535-4cf9-a2b3-eea789225d35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{85e6c571-8309-472a-a508-d7bc51110bd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\math">
+      <UniqueIdentifier>{3e161285-e0e0-47ff-87eb-89241f9f22c6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
