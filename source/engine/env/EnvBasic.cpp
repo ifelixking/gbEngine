@@ -1,21 +1,29 @@
 #include "stdafx.h"
 #include "EnvBasic.h"
 #include "Window.h"
+#include "EventManager.h"
 
 namespace gbEngine {
-	EnvBasic::EnvBasic() {}
+	EnvBasic::EnvBasic()
+		: m_eventManager(nullptr) {
+	}
 
-	EnvBasic::~EnvBasic() {}
+	EnvBasic::~EnvBasic() {
+
+	}
 
 	bool EnvBasic::Init() {
+		m_eventManager = new EventManager(EnvBasic::eventHandle, this);
 		return true;
 	}
 
-	void EnvBasic::Release() {}
+	void EnvBasic::Release() {
+		delete m_eventManager; m_eventManager = nullptr;
+	}
 
 	class Window* EnvBasic::CreateRenderWindow(Point location, Size size, void* parentWindow) {
 		Window* win = new Window;
-		win->Create(location, size, parentWindow, nullptr);
+		win->Create(location, size, parentWindow, this->m_eventManager);
 		win->Show();
 		// m_windowList.push_back(win);
 		return win;
@@ -30,6 +38,12 @@ namespace gbEngine {
 	}
 
 	void EnvBasic::ExecEventLoop() {
-		
+		m_eventManager->ExecEventLoop();
+	}
+
+	void EnvBasic::eventHandle(class Window* window, const struct Event* event, void* param) {
+		auto _this = (EnvBasic*)param;
+		// TODO: 决定是否处理WM_PAINT
+		// TODO: 路由给Surface， 有Surface下的ToolManager处理
 	}
 }

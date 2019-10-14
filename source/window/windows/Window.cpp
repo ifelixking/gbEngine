@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Window.h"
+#include "EventManager.h"
 
 extern HMODULE g_win32ModuleHandle;
 static const char* WNDCLASSNAME = "gbEngine_window";
@@ -7,14 +8,14 @@ static const char* WNDCLASSNAME = "gbEngine_window";
 namespace gbEngine {
 
 	Window::Window()
-		: m_hwnd(NULL), m_hdc(NULL), m_hrc(NULL), m_eventHandle(nullptr) {
+		: m_hwnd(NULL), m_hdc(NULL), m_hrc(NULL), m_eventManager(nullptr) {
 	}
 
 	Window::~Window() {
 		assert(m_hwnd == NULL && m_hdc == NULL && m_hrc == NULL);
 	}
 
-	void Window::Create(Point location, Size size, void* parentWindow, EventHandle eventHandle) {
+	void Window::Create(Point location, Size size, void* parentWindow, EventManager* eventManager) {
 		assert(m_hwnd == NULL);
 		WNDCLASSEX wndClass;
 		auto bResult = GetClassInfoEx(g_win32ModuleHandle, WNDCLASSNAME, &wndClass);
@@ -28,10 +29,8 @@ namespace gbEngine {
 			(HWND)parentWindow, NULL, g_win32ModuleHandle, NULL); assert(hwnd);
 		SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)this);
 
-
-
 		m_hwnd = hwnd;
-		m_eventHandle = eventHandle;
+		m_eventManager = eventManager;
 	}
 
 	void Window::settingWNDCLASS(WNDCLASSEX& wcex) {
@@ -50,24 +49,47 @@ namespace gbEngine {
 	}
 
 	LRESULT CALLBACK Window::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
+		MouseAction mouseAction; int delta = 0;
 		switch (message)
 		{
 		case WM_SIZE: {
 			Window* _this = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 			POINTS pt = MAKEPOINTS(lParam);
-			Event event = Event::Create(ET_SIZE);  event.size = Point(pt.x, pt.y);
-			_this->m_eventHandle(_this, &event);
+			Event event = Event::Create(EventType::ET_SIZE);  event.sizeEvent.size = Point(pt.x, pt.y);
+			_this->m_eventManager->ProcessWindowEvent(_this, &event);
 		}break;
 		case WM_MOUSEWHEEL:
+			delta = GET_WHEEL_DELTA_WPARAM(wParam);
+			mouseAction = MouseAction::MA_WHEEL;			
+			goto L_MOUSE_CASE;
 		case WM_LBUTTONDOWN:
+			mouseAction = MouseAction::MA_LBUTTONDOWN;
+			goto L_MOUSE_CASE;
 		case WM_RBUTTONDOWN:
+			mouseAction = MouseAction::MA_RBUTTONDOWN;
+			goto L_MOUSE_CASE;
 		case WM_MBUTTONDOWN:
+			mouseAction = MouseAction::MA_MBUTTONDOWN;
+			goto L_MOUSE_CASE;
 		case WM_LBUTTONUP:
+			mouseAction = MouseAction::MA_LBUTTONUP;
+			goto L_MOUSE_CASE;
 		case WM_RBUTTONUP:
+			mouseAction = MouseAction::MA_RBUTTONUP;
+			goto L_MOUSE_CASE;
 		case WM_MBUTTONUP:
+			mouseAction = MouseAction::MA_MBUTTONUP;
+			goto L_MOUSE_CASE;
 		case WM_MOUSEMOVE: {
-			//TestApp* _this = (TestApp*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
-			//_this->m_execParams.funcEvent(message, wParam, lParam);
+			mouseAction = MouseAction::MA_MOVE;
+			L_MOUSE_CASE:
+			Window* _this = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+			POINTS pt = MAKEPOINTS(lParam);
+			Event event = Event::Create(EventType::ET_MOUSE);
+			event.mouseEvent.action = mouseAction;
+			event.mouseEvent.position = Point(pt.x, pt.y);
+			event.mouseEvent.delta = delta;
+			_this->m_eventManager->ProcessWindowEvent(_this, &event);
 		}break;
 		case WM_DESTROY: PostQuitMessage(0); break;
 		default:
@@ -81,8 +103,7 @@ namespace gbEngine {
 	}
 
 	void Window::Show(bool visible) {
-		auto result = ShowWindow(m_hwnd, visible ? SW_SHOWNORMAL : SW_HIDE);
-		assert(result);
+		ShowWindow(m_hwnd, visible ? SW_SHOWNORMAL : SW_HIDE);
 	}
 
 }

@@ -23,7 +23,12 @@ namespace gbEngine {
 		void ExecEventLoop();
 
 	private:
+		static void eventHandle(class Window * window, const struct Event * event, void * param);
+
+	private:
 		// std::vector<Window*> m_windowList;
+		class EventManager* m_eventManager;
+		
 	};
 
 

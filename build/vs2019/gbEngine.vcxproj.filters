@@ -16,9 +16,6 @@
     <ClCompile Include="..\..\source\window\windows\Context.cpp">
       <Filter>source\window\windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\window\windows\Event.cpp">
-      <Filter>source\window\windows</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\window\windows\Window.cpp">
       <Filter>source\window\windows</Filter>
     </ClCompile>
@@ -26,6 +23,9 @@
       <Filter>source\engine\env</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\window\windows\dllmain.cpp">
+      <Filter>source\window\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\window\windows\EventManager.cpp">
       <Filter>source\window\windows</Filter>
     </ClCompile>
   </ItemGroup>
@@ -48,9 +48,6 @@
     <ClInclude Include="..\..\source\window\windows\Context.h">
       <Filter>source\window\windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\window\windows\Event.h">
-      <Filter>source\window\windows</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\window\windows\Window.h">
       <Filter>source\window\windows</Filter>
     </ClInclude>
@@ -68,6 +65,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\window\defines.h">
       <Filter>source\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\window\windows\EventManager.h">
+      <Filter>source\window\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

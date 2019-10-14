@@ -10,7 +10,7 @@ namespace gbEngine
 		Window();
 		~Window();
 
-		void Create(Point location, Size size, void* parentWindow, EventHandle eventHandle);
+		void Create(Point location, Size size, void* parentWindow, class EventManager * eventManager);
 		void Destroy();
 		void Show(bool visible = true);
 
@@ -22,7 +22,8 @@ namespace gbEngine
 		HWND m_hwnd;
 		HDC m_hdc;
 		HGLRC m_hrc;
-		EventHandle m_eventHandle;
+		class EventManager * m_eventManager;
+		class Surface* m_surface;
 	};
 
 

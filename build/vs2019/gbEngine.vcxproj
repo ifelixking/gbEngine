@@ -93,7 +93,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>..\..\source\common;..\..\extern\glew\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\source\window\windows;..\..\source\common;..\..\extern\glew\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -109,7 +109,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>..\..\source\common;..\..\extern\glew\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\source\window\windows;..\..\source\common;..\..\extern\glew\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -127,7 +127,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>..\..\source\common;..\..\extern\glew\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\source\window\windows;..\..\source\common;..\..\extern\glew\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -147,7 +147,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>..\..\source\common;..\..\extern\glew\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\source\window\windows;..\..\source\common;..\..\extern\glew\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -175,7 +175,7 @@
     <ClCompile Include="..\..\source\engine\env\EnvBasic.cpp" />
     <ClCompile Include="..\..\source\window\windows\Context.cpp" />
     <ClCompile Include="..\..\source\window\windows\dllmain.cpp" />
-    <ClCompile Include="..\..\source\window\windows\Event.cpp" />
+    <ClCompile Include="..\..\source\window\windows\EventManager.cpp" />
     <ClCompile Include="..\..\source\window\windows\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,7 +190,7 @@
     <ClInclude Include="..\..\source\math\Vector2.h" />
     <ClInclude Include="..\..\source\window\defines.h" />
     <ClInclude Include="..\..\source\window\windows\Context.h" />
-    <ClInclude Include="..\..\source\window\windows\Event.h" />
+    <ClInclude Include="..\..\source\window\windows\EventManager.h" />
     <ClInclude Include="..\..\source\window\windows\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
