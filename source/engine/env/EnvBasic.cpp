@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "EnvBasic.h"
-#include "Window.h"
+#include "RenderWindow.h"
 #include "EventManager.h"
 
 namespace gbEngine {
@@ -13,23 +13,25 @@ namespace gbEngine {
 	}
 
 	bool EnvBasic::Init() {
+		RenderWindow::Initilize();
 		m_eventManager = new EventManager(EnvBasic::eventHandle, this);
 		return true;
 	}
 
 	void EnvBasic::Release() {
 		delete m_eventManager; m_eventManager = nullptr;
+		RenderWindow::Release();
 	}
 
-	class Window* EnvBasic::CreateRenderWindow(Point location, Size size, void* parentWindow) {
-		Window* win = new Window;
+	class RenderWindow* EnvBasic::CreateRenderWindow(Point location, Size size, void* parentWindow) {
+		RenderWindow* win = new RenderWindow;
 		win->Create(location, size, parentWindow, this->m_eventManager);
 		win->Show();
 		// m_windowList.push_back(win);
 		return win;
 	}
 
-	void EnvBasic::DestroyRenderWindow(Window* window) {
+	void EnvBasic::DestroyRenderWindow(RenderWindow* window) {
 		// auto itorFind = std::find(m_windowList.begin(), m_windowList.end(), window);
 		// if (itorFind == m_windowList.end()) { assert(false); return; }
 		// m_windowList.erase(itorFind);
@@ -41,9 +43,9 @@ namespace gbEngine {
 		m_eventManager->ExecEventLoop();
 	}
 
-	void EnvBasic::eventHandle(class Window* window, const struct Event* event, void* param) {
+	void EnvBasic::eventHandle(class RenderWindow* window, const struct Event* event, void* param) {
 		auto _this = (EnvBasic*)param;
-		// TODO: 决定是否处理WM_PAINT
-		// TODO: 路由给Surface， 有Surface下的ToolManager处理
+		// TODO: 锟斤拷锟斤拷锟角凤拷锟斤拷WM_PAINT
+		// TODO: 路锟缴革拷Surface锟斤拷 锟斤拷Surface锟铰碉拷ToolManager锟斤拷锟斤拷
 	}
 }

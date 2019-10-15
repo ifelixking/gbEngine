@@ -13,20 +13,20 @@
     <ClCompile Include="..\..\source\engine\core\Surface.cpp">
       <Filter>source\engine\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\window\windows\Context.cpp">
-      <Filter>source\window\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\window\windows\Window.cpp">
-      <Filter>source\window\windows</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\engine\env\EnvBasic.cpp">
       <Filter>source\engine\env</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\window\windows\dllmain.cpp">
-      <Filter>source\window\windows</Filter>
+    <ClCompile Include="..\..\source\platform\windows\Context.cpp">
+      <Filter>source\platform\windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\window\windows\EventManager.cpp">
-      <Filter>source\window\windows</Filter>
+    <ClCompile Include="..\..\source\platform\windows\dllmain.cpp">
+      <Filter>source\platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\platform\windows\EventManager.cpp">
+      <Filter>source\platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\platform\windows\RenderWindow.cpp">
+      <Filter>source\platform\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -45,12 +45,6 @@
     <ClInclude Include="..\..\source\engine\core\Surface.h">
       <Filter>source\engine\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\window\windows\Context.h">
-      <Filter>source\window\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\window\windows\Window.h">
-      <Filter>source\window\windows</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\engine\env\EnvBasic.h">
       <Filter>source\engine\env</Filter>
     </ClInclude>
@@ -63,11 +57,17 @@
     <ClInclude Include="..\..\source\math\math.h">
       <Filter>source\math</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\window\defines.h">
-      <Filter>source\window</Filter>
+    <ClInclude Include="..\..\source\platform\defines.h">
+      <Filter>source\platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\window\windows\EventManager.h">
-      <Filter>source\window\windows</Filter>
+    <ClInclude Include="..\..\source\platform\windows\Context.h">
+      <Filter>source\platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\platform\windows\EventManager.h">
+      <Filter>source\platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\platform\windows\RenderWindow.h">
+      <Filter>source\platform\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -89,9 +89,6 @@
     <Filter Include="source\common">
       <UniqueIdentifier>{bba256e1-9b0e-4ad5-b329-c84e32e718a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\window">
-      <UniqueIdentifier>{07e70245-acb5-40f7-b41e-1fc44115dbbf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="source\engine\driver">
       <UniqueIdentifier>{09a31dc6-029d-45fc-87de-dfa44710ed56}</UniqueIdentifier>
     </Filter>
@@ -101,9 +98,6 @@
     <Filter Include="source\engine\driver\opengl">
       <UniqueIdentifier>{f77c4b61-dadb-4d13-a6de-0e3fbbff6ed2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\window\windows">
-      <UniqueIdentifier>{cfff66e2-6265-4baf-a6dc-452d3ee00004}</UniqueIdentifier>
-    </Filter>
     <Filter Include="source\engine\env">
       <UniqueIdentifier>{58d2a97b-f535-4cf9-a2b3-eea789225d35}</UniqueIdentifier>
     </Filter>
@@ -112,6 +106,12 @@
     </Filter>
     <Filter Include="source\math">
       <UniqueIdentifier>{3e161285-e0e0-47ff-87eb-89241f9f22c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\platform">
+      <UniqueIdentifier>{07e70245-acb5-40f7-b41e-1fc44115dbbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\platform\windows">
+      <UniqueIdentifier>{cfff66e2-6265-4baf-a6dc-452d3ee00004}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

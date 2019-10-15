@@ -1,9 +1,10 @@
-#include <windows.h>
+// #include <windows.h>
 #include "../../../include/gbEngine.h"
 
 using namespace gbEngine;
 
-int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ PWSTR pCmdLine, _In_ int nCmdShow)
+// int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ PWSTR pCmdLine, _In_ int nCmdShow)
+int main(int argc, char ** argv)
 {
 	EnvBasic env;
 	env.Init();
@@ -11,5 +12,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	env.ExecEventLoop();
 	env.DestroyRenderWindow(window);
 	env.Release();
+
 	return 0;
 }

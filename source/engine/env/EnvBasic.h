@@ -1,6 +1,6 @@
 #pragma once
 
-// ËùÓÐäÖÈ¾Ïß³Ì£¬´°¿ÚÏûÏ¢´¦Àí ¶¼ÔÚÖ÷Ïß³ÌÖÐ
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¾ï¿½ß³Ì£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½
 
 namespace gbEngine {
 
@@ -10,20 +10,20 @@ namespace gbEngine {
 		EnvBasic();
 		~EnvBasic();
 
-		// ³õÊ¼»¯
-		// OpenGL: ³õÊ¼»¯Ö÷µÄäÖÈ¾ÉÏÏÂÎÄ£¬³õÊ¼»¯glew
+		// ï¿½ï¿½Ê¼ï¿½ï¿½
+		// OpenGL: ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¾ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½glew
 		bool Init();
 
 		void Release();
 
-		class Window* CreateRenderWindow(Point location, Size size, void * parentWindow);
+		class RenderWindow* CreateRenderWindow(Point location, Size size, void * parentWindow);
 		
-		void DestroyRenderWindow(Window* window);
+		void DestroyRenderWindow(class RenderWindow* window);
 
 		void ExecEventLoop();
 
 	private:
-		static void eventHandle(class Window * window, const struct Event * event, void * param);
+		static void eventHandle(class RenderWindow * window, const struct Event * event, void * param);
 
 	private:
 		// std::vector<Window*> m_windowList;

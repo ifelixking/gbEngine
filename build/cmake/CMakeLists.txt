@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15.4)
+cmake_minimum_required(VERSION 3.13.4)
 
 project(gbEngine)
 
@@ -16,6 +16,7 @@ function(messages args)
 	endwhile()
 endfunction()
 
+message(STATUS "**************** build gbEngine ****************")
 # require opengl
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
@@ -25,29 +26,32 @@ add_definitions(${OpenGL_DEFINITIONS})
 # for #include "stdafx.h"
 include_directories(../../source/common)
 
-# window system
+# platform
 if (WIN32)
-	set(window windows)
+	set(platform windows)
 	set(srcdir ${srcdir} ../../source/engine/driver/direct3d)
-	set(srcdir ${srcdir} ../../source/engine/window/windows)
+	set(srcdir ${srcdir} ../../source/engine/platform/windows)
 elseif(UNIX)
-	set(window x)
-	set(srcdir ${srcdir} ../../source/engine/window/x)
+	set(platform x)
+	set(srcdir ${srcdir} ../../source/engine/platform/x)
 elseif(APPLE)
-	set(window osx)
-	set(srcdir ${srcdir} ../../source/engine/window/osx)
+	set(platform osx)
+	set(srcdir ${srcdir} ../../source/engine/platform/osx)
 endif ()
-message(STATUS "!!! window-system is ${window}")
-include_directories("../../source/window/${window}")
+message(STATUS "!!!! platform is ${platform} !!!!")
+include_directories("../../source/platform/${platform}")
 
 # gbEngine 源文件目录
 set(srcdir
 	../../source/common
 	../../source/engine/core
+	../../source/engine/driver
 	../../source/engine/driver/opengl
+	../../source/engine/driver/direct3d
 	../../source/engine/env
-	../../source/engine/math
-	../../source/engine/window
+	../../source/math
+	../../source/platform
+	../../source/platform/${platform}
 )
 
 foreach(dir ${srcdir})
@@ -58,5 +62,10 @@ message(STATUS "======== [source files] ========")
 message(STATUS "================================")
 
 add_library(gbEngine SHARED ${gbEngine_SOURCE})
+target_link_libraries(gbEngine X11 GLX OpenGL)
 
 # demo-basic
+message(STATUS "**************** build demo basic ****************")
+aux_source_directory(../../source/demo/basic demo_basic_SOURCE)
+add_executable(demo-basic ${demo_basic_SOURCE})
+target_link_libraries(demo-basic gbEngine)
