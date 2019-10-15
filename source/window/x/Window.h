@@ -2,18 +2,18 @@
 
 #include "../defines.h"
 
-namespace gbEngine
+NAMESPACE_BEGIN
+
+class Window
 {
-	class Window
-	{
-	public:
-		Window();
-		~Window();
+public:
+	Window();
+	~Window();
 
-		void Create(Point location, Size size, void* parentWindow, EventHandle eventHandle);
-		void Destroy();
-		void Show(bool visible = true);
-	};
+	void Create(Point location, Size size, void* parentWindow, class EventManager * eventManager);
+	void Destroy();
+	void Show(bool visible = true);
+};
 
 
-}
+NAMESPACE_END

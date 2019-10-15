@@ -28,5 +28,8 @@
 	#define API
 #endif
 
+#define NAMESPACE_BEGIN namespace gbEngine {
+#define NAMESPACE_END }
+
 // 
 #include "../math/math.h"

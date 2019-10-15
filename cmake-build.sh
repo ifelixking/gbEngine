@@ -6,5 +6,6 @@ then
 fi
 
 cd tmp
+clear
 cmake ../build/cmake
 make

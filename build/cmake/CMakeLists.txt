@@ -37,6 +37,7 @@ elseif(APPLE)
 	set(window osx)
 	set(srcdir ${srcdir} ../../source/engine/window/osx)
 endif ()
+message(STATUS "!!! window-system is ${window}")
 include_directories("../../source/window/${window}")
 
 # gbEngine 源文件目录
