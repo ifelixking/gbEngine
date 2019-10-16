@@ -36,21 +36,26 @@ void EventManager::ProcessWindowEvent(class RenderWindow *window, const struct E
 
 void EventManager::ExecEventLoop() {
 	XEvent xEvent;
+	Event event = Event::Create();
 	for (;;){
-		XNextEvent(g_device.display, &xEvent);
+		XNextEvent(g_device.GetDisplay(), &xEvent);
 		switch (xEvent.type) {
+		case Expose:{
+			event.type = EventType::ET_INVALIDATE;
+		} break;
 		case KeyPress:{
-			auto keySys = XkbKeycodeToKeysym(g_device.display, xEvent.xkey.keycode, 0,
-			(xEvent.xkey.state & ShiftMask) ? 1 : 0);
-			Event event = Event::Create(EventType::ET_KEYBOARD); event.keyEvent.keyCode = keySys;
-			auto itorFind = m_private->find(xEvent.xkey.window);
-			if (itorFind != m_private->regWindowList.end()){
-				auto window = itorFind->second;
-				m_eventHandle(window, &event, m_param);
-			} else { assert(false); }
+			auto keySys = XkbKeycodeToKeysym(g_device.GetDisplay(), xEvent.xkey.keycode, 0,
+					(xEvent.xkey.state & ShiftMask) ? 1 : 0);
+			event.type = EventType::ET_KEYBOARD; event.keyEvent.keyCode = keySys;
 			if (keySys == XK_Escape) return;
-		} break;		
+		} break;
+		default:
+			continue;
 		}
+		auto itorFind = m_private->find(xEvent.xkey.window);
+		if (itorFind == m_private->regWindowList.end()) { assert(false); continue; }
+		auto window = itorFind->second;
+		m_eventHandle(window, &event, m_param);
 	}
 }
 

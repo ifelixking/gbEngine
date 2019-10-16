@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "EnvBasic.h"
+#include "Device.h"
 #include "RenderWindow.h"
 #include "EventManager.h"
+#include "../../engine/core/Surface.h"
 
 namespace gbEngine {
 	EnvBasic::EnvBasic()
@@ -13,7 +15,7 @@ namespace gbEngine {
 	}
 
 	bool EnvBasic::Init() {
-		RenderWindow::Initilize();
+		RenderWindow::Initialize();
 		m_eventManager = new EventManager(EnvBasic::eventHandle, this);
 		return true;
 	}
@@ -45,7 +47,14 @@ namespace gbEngine {
 
 	void EnvBasic::eventHandle(class RenderWindow* window, const struct Event* event, void* param) {
 		auto _this = (EnvBasic*)param;
-		// TODO: �����Ƿ���WM_PAINT
-		// TODO: ·�ɸ�Surface�� ��Surface�µ�ToolManager����
+
+		// WM_PAINT
+		if (event->type == EventType::ET_INVALIDATE){
+			g_device.RenderBegin(window);
+			window->GetSurface()->Render();
+			g_device.RenderEnd(window);
+		}
+
+		// TODO: Surface -> ToolManager
 	}
 }

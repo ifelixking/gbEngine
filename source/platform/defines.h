@@ -6,7 +6,7 @@ namespace gbEngine
 		ET_INVALIDATE,
 		ET_SIZE,
 		ET_MOUSE,
-		ET_KEYBOARD,		
+		ET_KEYBOARD,
 	};
 
 	struct SizeEvent {
@@ -53,10 +53,9 @@ namespace gbEngine
 			KeyEvent keyEvent;
 		};
 
-		static Event Create(EventType type) {
+		static Event Create() {
 			char data[sizeof(Event)];
 			Event* e = (Event*)data;
-			e->type = type;
 			return *e;
 		}
 	};

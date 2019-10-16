@@ -1,7 +1,6 @@
 #pragma once
 
-// ������Ⱦ�̣߳�������Ϣ���� �������߳���
-
+//
 namespace gbEngine {
 
 	class API EnvBasic
@@ -10,8 +9,6 @@ namespace gbEngine {
 		EnvBasic();
 		~EnvBasic();
 
-		// ��ʼ��
-		// OpenGL: ��ʼ��������Ⱦ�����ģ���ʼ��glew
 		bool Init();
 
 		void Release();
@@ -26,7 +23,6 @@ namespace gbEngine {
 		static void eventHandle(class RenderWindow * window, const struct Event * event, void * param);
 
 	private:
-		// std::vector<Window*> m_windowList;
 		class EventManager* m_eventManager;
 		
 	};

@@ -8,5 +8,5 @@ fi
 cd tmp
 rm -rf ./*
 clear
-cmake-build-debug ../build/cmake-build-debug
+cmake ../build/cmake
 make
