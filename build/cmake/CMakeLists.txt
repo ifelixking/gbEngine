@@ -16,38 +16,51 @@ function(messages args)
 	endwhile()
 endfunction()
 
-message(STATUS "**************** build gbEngine ****************")
-# require opengl
-find_package(OpenGL REQUIRED)
-include_directories(${OpenGL_INCLUDE_DIRS})
-link_directories(${OpenGL_LIBRARY_DIRS})
-add_definitions(${OpenGL_DEFINITIONS})
-
-# for #include "stdafx.h"
-include_directories(../../source/common)
-
 # platform
 if (WIN32)
-	set(platform windows)
-	set(srcdir ${srcdir} ../../source/engine/driver/direct3d)
-	set(srcdir ${srcdir} ../../source/engine/platform/windows)
+	set(defaultPlatform Windows)
 elseif(UNIX)
-	set(platform x)
-	set(srcdir ${srcdir} ../../source/engine/platform/x)
+	set(defaultPlatform X)
 elseif(APPLE)
-	set(platform osx)
-	set(srcdir ${srcdir} ../../source/engine/platform/osx)
+	set(defaultPlatform OSX)
 endif ()
-message(STATUS "!!!! platform is ${platform} !!!!")
+set(platform ${defaultPlatform} CACHE STRING
+  "select platform for build target")
+set_property(
+	CACHE platform PROPERTY STRINGS
+	Windows X OSX Qt Android iOS Wasm
+)
+message(STATUS "!!!! Target platform: ${platform} !!!!")
+
+# renderer
+set(renderer "OpenGL" CACHE STRING "select renderer")
+set_property(
+	CACHE renderer PROPERTY STRINGS
+	"OpenGL" "Direct3D"
+)
+message(STATUS "!!!! Renderer: ${renderer} !!!!")
+message(STATUS "--------------------------------------------------------")
+
+message(STATUS "**************** [module] build gbEngine ****************")
+if (${renderer} STREQUAL "OpenGL")
+	find_package(OpenGL REQUIRED)
+	include_directories(${OpenGL_INCLUDE_DIRS})
+	link_directories(${OpenGL_LIBRARY_DIRS})
+	add_definitions(${OpenGL_DEFINITIONS})
+elseif (${renderer} STREQUAL "Direct3D")
+	# 
+endif()
+
 include_directories("../../source/platform/${platform}")
+include_directories("../../source/engine/${platform}")
+include_directories("../../source/common")		# for source code #include "stdafx.h"
 
 # gbEngine 源文件目录
 set(srcdir
 	../../source/common
 	../../source/engine/core
 	../../source/engine/driver
-	../../source/engine/driver/opengl
-	../../source/engine/driver/direct3d
+	../../source/engine/driver/${renderer}
 	../../source/engine/env
 	../../source/math
 	../../source/platform
@@ -58,14 +71,32 @@ foreach(dir ${srcdir})
 	aux_source_directory(${dir} gbEngine_SOURCE)	
 endforeach(dir)
 message(STATUS "======== [source files] ========")
-	messages(${gbEngine_SOURCE})
-message(STATUS "================================")
-
+messages(${gbEngine_SOURCE})
 add_library(gbEngine SHARED ${gbEngine_SOURCE})
-target_link_libraries(gbEngine X11 GLX OpenGL)
+
+if (${platform} STREQUAL Windows)
+elseif (${platform} STREQUAL X)
+	set(libs ${libs} X11)
+elseif (${platform} STREQUAL OSX)
+elseif (${platform} STREQUAL Android)
+elseif (${platform} STREQUAL iOS)
+elseif (${platform} STREQUAL Qt)
+elseif (${platform} STREQUAL Wasm)
+endif()
+
+if (${renderer} STREQUAL OpenGL)
+	set(libs ${libs} GL)
+elseif (${renderer} STREQUAL Direct3D)
+endif()
+message(STATUS "======== [libraries] ========")
+messages(${libs})
+
+target_link_libraries(gbEngine ${libs})
 
 # demo-basic
-message(STATUS "**************** build demo basic ****************")
+message(STATUS "**************** [module] demo basic ****************")
 aux_source_directory(../../source/demo/basic demo_basic_SOURCE)
 add_executable(demo-basic ${demo_basic_SOURCE})
 target_link_libraries(demo-basic gbEngine)
+
+message(STATUS "********************************")

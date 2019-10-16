@@ -6,6 +6,7 @@ then
 fi
 
 cd tmp
+rm -rf ./*
 clear
-cmake ../build/cmake
+cmake-build-debug ../build/cmake-build-debug
 make
