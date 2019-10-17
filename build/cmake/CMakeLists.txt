@@ -52,7 +52,7 @@ elseif (${renderer} STREQUAL "Direct3D")
 endif()
 
 include_directories("../../source/platform/${platform}")
-include_directories("../../source/engine/${platform}")
+include_directories("../../source/engine/driver/${renderer}")
 include_directories("../../source/common")		# for source code #include "stdafx.h"
 
 # gbEngine 源文件目录
@@ -66,6 +66,10 @@ set(srcdir
 	../../source/platform
 	../../source/platform/${platform}
 )
+if (${renderer} STREQUAL "OpenGL")
+	add_definitions(-DGLEW_STATIC)
+	set(srcdir ${srcdir} ../../extern/glew/src)
+endif()
 
 foreach(dir ${srcdir})
 	aux_source_directory(${dir} gbEngine_SOURCE)	

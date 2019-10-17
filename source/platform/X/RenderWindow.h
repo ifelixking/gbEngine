@@ -10,10 +10,7 @@ public:
 	RenderWindow();
 	~RenderWindow();
 
-public: // internal
-	static void Initialize();
-	static void Release();
-
+public:
 	void Create(Point location, Size size, void* parentWindow, class EventManager * eventManager);
 	void Destroy();
 	void Show(bool visible = true);

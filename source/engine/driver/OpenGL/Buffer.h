@@ -7,6 +7,7 @@ public:
 	Buffer(unsigned int size, void * data);
 	~Buffer();
 
+	GLuint GetHandle() const { return m_handle; }
 
 private:
 	GLuint m_handle;

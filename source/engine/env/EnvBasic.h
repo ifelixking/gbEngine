@@ -10,8 +10,10 @@ namespace gbEngine {
 		~EnvBasic();
 
 		bool Init();
-
 		void Release();
+
+		void BeginCreateResource();
+		void EndCreateResource();
 
 		class RenderWindow* CreateRenderWindow(Point location, Size size, void * parentWindow);
 		

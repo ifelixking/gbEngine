@@ -8,6 +8,8 @@ int main(int argc, char ** argv)
 {
 	EnvBasic env;
 	env.Init();
+
+
 	auto window = env.CreateRenderWindow(Point(100, 100), Size(600, 400), nullptr);
 	env.ExecEventLoop();
 	env.DestroyRenderWindow(window);

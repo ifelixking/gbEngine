@@ -9,5 +9,6 @@ namespace gbEngine
 		~Surface();
 
 		void Render();
+
 	};
 }

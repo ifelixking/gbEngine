@@ -9,6 +9,8 @@
 #include <map>
 #include <thread>
 #include <cassert>
+#include <sstream>
+#include <iostream>
 
 // opengl
 #include <GL/glew.h>

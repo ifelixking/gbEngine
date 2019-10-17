@@ -15,14 +15,21 @@ namespace gbEngine {
 	}
 
 	bool EnvBasic::Init() {
-		RenderWindow::Initialize();
+		g_device.Open();
 		m_eventManager = new EventManager(EnvBasic::eventHandle, this);
 		return true;
 	}
 
 	void EnvBasic::Release() {
 		delete m_eventManager; m_eventManager = nullptr;
-		RenderWindow::Release();
+		g_device.Close();
+	}
+
+	void EnvBasic::BeginCreateResource(){
+		g_device.BeginCreateResource();
+	}
+	void EnvBasic::EndCreateResource(){
+		g_device.EndCreateResource();
 	}
 
 	class RenderWindow* EnvBasic::CreateRenderWindow(Point location, Size size, void* parentWindow) {

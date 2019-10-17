@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Device.h"
 #include "RenderWindow.h"
+#include "../../engine/driver/driver.h"
 
 NAMESPACE_BEGIN
 
@@ -27,6 +28,10 @@ void Device::Open(){
 
 	// create a gl context for global resource shared
 	m_glContext = glXCreateContext(m_display, m_visualInfo, nullptr, GL_TRUE); assert(m_glContext);
+
+	this->BeginCreateResource();
+	RenderDriverInit();
+	this->EndCreateResource();
 }
 
 void Device::Close(){
@@ -71,6 +76,14 @@ void Device::RenderBegin(RenderWindow * window){
 
 void Device::RenderEnd(RenderWindow * window){
 	glXSwapBuffers(m_display, window->GetXWindow());
+}
+
+void Device::BeginCreateResource(){
+	glXMakeCurrent(m_display, m_windowRoot, m_glContext);
+}
+
+void Device::EndCreateResource(){
+
 }
 
 

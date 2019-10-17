@@ -6,14 +6,6 @@
 
 NAMESPACE_BEGIN
 
-void RenderWindow::Initialize(){
-	g_device.Open();
-}
-
-void RenderWindow::Release(){
-	g_device.Close();
-}
-
 RenderWindow::RenderWindow()
 	: m_eventManager(nullptr),
 	m_xWindow(None),

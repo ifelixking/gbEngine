@@ -26,6 +26,9 @@ public:
 	void RenderBegin(class RenderWindow * window);
 	void RenderEnd(class RenderWindow * window);
 
+	void BeginCreateResource();
+	void EndCreateResource();
+
 private:
 	Display *m_display;
 	Window m_windowRoot;
